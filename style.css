@@ -1,0 +1,319 @@
+:root {
+    --primary-color: #0079bf;
+    --secondary-color: #f0f2f5; /* Light grey for column backgrounds */
+    --background-color: #ffffff;
+    --text-color: #1c1e21;
+    --card-background: #ffffff;
+    --border-color: #ced4da;
+    --modal-backdrop: rgba(0, 0, 0, 0.4);
+    --header-bg: #0079bf; /* Blue from image */
+    --header-text: #ffffff;
+    --button-add-board-bg: #42b72a; /* Greenish button from image, placeholder */
+    --button-add-board-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --primary-color: #1a1a2e;
+    --secondary-color: #2c2c3e; /* Darker grey for column backgrounds */
+    --background-color: #1f1f2e;
+    --text-color: #e4e6eb;
+    --card-background: #2c2c3e; /* Darker card background */
+    --border-color: #44474a;
+    --modal-backdrop: rgba(0, 0, 0, 0.6);
+    --header-bg: #1a1a2e;
+    --header-text: #e4e6eb;
+    --button-add-board-bg: #36a420; /* Darker green */
+    --button-add-board-text: #ffffff;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.5;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header .logo-title h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+header .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#addBoardBtn {
+    background-color: var(--button-add-board-bg); /* Will be styled more accurately later */
+    color: var(--button-add-board-text);
+    border: none;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+#addBoardBtn:hover {
+    opacity: 0.9;
+}
+
+#themeToggleBtn {
+    background: none;
+    border: none;
+    color: var(--header-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.kanban-container {
+    display: flex;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    overflow-x: auto;
+    align-items: flex-start;
+    min-height: calc(100vh - 100px); /* Adjust based on header height */
+}
+
+/* Basic Modal Styles (will be refined) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-backdrop);
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 10% auto;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.modal-content input[type="text"],
+.modal-content textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+.modal-content textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.modal-actions button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+}
+
+.modal-actions #saveBoardBtn,
+.modal-actions #saveCardBtn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.modal-actions .cancel-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.close-btn {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+/* Board and Card styles will be added/refined here later based on image */
+.board {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 300px;
+    max-width: 320px; /* Max width for a board */
+    flex: 0 0 auto; /* Prevent boards from shrinking/growing too much */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    height: fit-content; /* So board height adjusts to content */
+}
+
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.board-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.board-actions button,
+.card-actions button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 1rem;
+}
+
+.board-actions button:hover,
+.card-actions button:hover {
+    opacity: 0.7;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 40px; /* For dropping cards */
+    flex-grow: 1;
+    padding: 0.25rem; /* Padding for better visual of drop area */
+}
+
+.add-card-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px dashed var(--border-color);
+    padding: 0.6rem;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.add-card-btn:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-color: var(--primary-color);
+}
+
+.card {
+    background-color: var(--card-background);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    cursor: grab;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.card-title-text {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.card-description-text {
+    font-size: 0.875rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    opacity: 0.9;
+    word-wrap: break-word;
+}
+
+.card-timestamp {
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.dragging {
+    opacity: 0.5;
+    transform: rotate(3deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .kanban-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .board {
+        min-width: 280px;
+    }
+    .modal-content {
+        width: 90%;
+        margin: 15% auto;
+    }
+}
+

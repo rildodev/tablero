@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero - Seu guia de tarefas diárias</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs serão importados como módulos no script.js -->
+</head>
+<body>
+    <header>
+        <div class="logo-title">
+            <h1>DEMANDAS</h1>
+        </div>
+        <div class="header-actions">
+            <!-- Botão Adicionar Board removido -->
+            <button id="themeToggleBtn" aria-label="Mudar tema"><span id="themeIcon">☀️</span></button>
+        </div>
+    </header>
+
+    <main id="kanbanContainer" class="kanban-container">
+        <!-- As colunas fixas (À fazer, Em progresso, Concluído) serão renderizadas aqui pelo JavaScript -->
+    </main>
+
+    <!-- Modal para Adicionar/Editar Board REMOVIDO -->
+
+    <!-- Modal para Adicionar/Editar Card -->
+    <div id="cardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal-id="cardModal">&times;</span>
+            <h2 id="cardModalTitle">Adicionar Novo Card</h2>
+            <label for="cardTitleInput">Título do Card:</label>
+            <input type="text" id="cardTitleInput" placeholder="Ex: Nome da tarefa">
+            <label for="cardDescriptionInput">Descrição (opcional):</label>
+            <textarea id="cardDescriptionInput" placeholder="Detalhes da tarefa..."></textarea>
+            <div class="modal-actions">
+                <button id="saveCardBtn">Salvar Card</button>
+                <button class="cancel-btn" data-modal-id="cardModal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- firebase-init.js não será mais usado diretamente aqui, 
+         a configuração será importada no script.js -->
+    <script src="script.js" type="module"></script> 
+    <!-- Adicionado type="module" para suportar importações ES6 no script.js -->
+
+</body>
+</html>
+
